@@ -23,6 +23,25 @@ source install/setup.bash
 ros2 run sevasarathi_ros_test ros_test_bridge
 ```
 
+Keep the bridge terminal running while using the web application. The bridge
+listens on `0.0.0.0:9000`, which allows the Express Docker container to reach
+it through `http://host.docker.internal:9000`.
+
+Verify the bridge before submitting a request:
+
+```bash
+curl http://localhost:9000/health
+```
+
+Expected response:
+
+```json
+{"status":"ok","ros_topic":"/sevasarathi/delivery_request"}
+```
+
+If ROS 2 runs inside WSL, its networking must expose port 9000 to Windows.
+Otherwise run the bridge where Windows and Docker Desktop can reach it.
+
 ## Start listener in another terminal
 
 ```bash

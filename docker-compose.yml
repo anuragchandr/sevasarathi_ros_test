@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  ros_bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sevasarathi_ros_bridge
+    ports:
+      - "9000:9000"
+    environment:
+      - ROS_DOMAIN_ID=0
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    tty: true
